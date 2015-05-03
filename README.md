@@ -4,8 +4,8 @@ A Command Line Interface to execute test cases embedded within a python code.
 # Installation
 `$ python setup.py install`
 # Requirements
-`python 2.7.x`
-`docopt>=1.6.2`
+- `python 2.7.x`
+- `docopt>=1.6.2`
 # Usage
 The file should contain test cases in the format:
 
