@@ -3,6 +3,8 @@
 A Command Line Interface to execute test cases embedded within a python code.
 # Installation
 `$ python setup.py install`
+# Requirements
+`docopt>=1.6.2`
 # Usage
 The file should contain test cases in the format:
 
