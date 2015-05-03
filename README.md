@@ -25,12 +25,13 @@ And then execute
 `alex <file-name>`
 # Example
 The following is an example file for demonstration:
-The below file is test.py which is a python solution to [this problem on Hackerrank](https://www.hackerrank.com/challenges/solve-me-second).
-`test.py`
+The below file is `test.py` which is a python solution to [this problem on Hackerrank](https://www.hackerrank.com/challenges/solve-me-second).
 ```
 def solveMeSecond(a,b):
    return a+b
+
 n = int(raw_input())
+
 for i in range(0,n):
     a, b = raw_input().split()
     a,b = int(a),int(b)
@@ -48,5 +49,7 @@ for i in range(0,n):
 10
 """
 ```
-Now execute:
-`alex test.py`
+Now execute
+```
+alex test.py
+```
