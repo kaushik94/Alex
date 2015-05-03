@@ -1,18 +1,18 @@
 # Alex
 ![alt tag](http://thesmashable.com/wp-content/uploads/2012/06/Madagascar-3-movie-2012-Alex-The-Lion-HD-Wallpaper-31.jpg)
-A Command Line Interface to execute test cases embedded within the code
+A Command Line Interface to execute test cases embedded within a python code.
 # Installation
 `python setup.py install`
 # Usage
 The file should contain test cases in the format:
 
-The inputs for the file should be in the format
+- The inputs for the file should be in the format
 ```
 """I
 your input should go here
 """
 ```
-The outputs for the file should be in the format
+- The outputs for the file should be in the format
 ```
 """O
 your expected output should go in here.
