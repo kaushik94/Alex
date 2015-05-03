@@ -78,3 +78,71 @@ PASS/FAIL (of 1 testcases)
 =========
 TESTCASE 1 PASS
 ```
+You can aslo have multiple testcases like this:
+```
+def solveMeSecond(a,b):
+   return a+b
+
+n = int(raw_input())
+
+for i in range(0,n):
+    a, b = raw_input().split()
+    a,b = int(a),int(b)
+    res = solveMeSecond(a,b)
+    print res
+
+"""I
+2
+2 3
+3 7
+"""
+
+"""O
+5
+10
+"""
+
+"""I
+3
+1 2
+3 7
+4 5
+"""
+
+"""O
+3
+10
+9
+"""
+```
+If you run:
+```
+$ alex test.py
+```
+output :
+```
+Alex is working on  test.py
+
+YOUR OUTPUT
+===========
+5
+10
+
+3
+10
+9
+
+EXPECTED OUTPUT
+===============
+5
+10
+
+3
+10
+9
+
+PASS/FAIL (of 2 testcases)
+=========
+TESTCASE 1 PASS
+TESTCASE 2 PASS
+```
