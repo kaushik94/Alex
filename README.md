@@ -1,11 +1,14 @@
 # Alex
 ![alt tag](http://thesmashable.com/wp-content/uploads/2012/06/Madagascar-3-movie-2012-Alex-The-Lion-HD-Wallpaper-31.jpg)
 A Command Line Interface to execute test cases embedded within a python code.
+
 # Installation
 `$ python setup.py install`
+
 # Requirements
 - `python 2.7.x`
 - `docopt>=1.6.2`
+
 # Usage
 The file should contain test cases in the format:
 
@@ -29,6 +32,7 @@ input-output should have same order.
 And then execute
 
 `$ alex <file-name>`
+
 # Example
 The following is an example file for demonstration:
 The below file is `test.py` which is a python solution to [this problem on Hackerrank](https://www.hackerrank.com/challenges/solve-me-second).
