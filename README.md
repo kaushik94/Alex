@@ -20,6 +20,9 @@ your expected output should go in here.
 ```
 
 The above 2 comments can be anywhere in the file. If you run only with inputs, you will just recieve the output.
+Also you can have multiple inputs/outputs but length of outputs(if any) should have the same length as inputs,
+input-output should have same order.
+
 And then execute
 
 `alex <file-name>`
