@@ -55,7 +55,7 @@ for i in range(0,n):
 Now execute
 ```
 $ alex test.py
-Alex is working on  tests/test_input3.py
+Alex is working on  test.py
 
 YOUR OUTPUT
 ===========
