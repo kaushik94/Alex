@@ -1,6 +1,8 @@
 # Alex
 ![alt tag](http://thesmashable.com/wp-content/uploads/2012/06/Madagascar-3-movie-2012-Alex-The-Lion-HD-Wallpaper-31.jpg)
 A Command Line Interface to execute test cases embedded within a python code.
+Its as simple as 123, just embed the code in the given format and do
+`$ alex <filename>.py`
 
 # Installation
 `$ python setup.py install`
