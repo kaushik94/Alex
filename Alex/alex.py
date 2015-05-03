@@ -13,31 +13,43 @@ from subprocess import Popen, PIPE, STDOUT, call
 import re
 
 def _collect_input(content):
-	m = re.findall('"""I\n(.*?)\n"""', content, re.DOTALL)
+	m = re.findall('"""I\n(.*?)"""', content, re.DOTALL)
 	if len(m):
 		return m
 	return None
 
 def _collect_output(content):
-	m = re.findall('"""O\n(.*?)\n"""', content, re.DOTALL)
+	m = re.findall('"""O\n(.*?)"""', content, re.DOTALL)
 	if len(m):
 		return m
 	return None
 
 def _test_python_input_output(filename, inputs, outputs):
-	pass
+	if len(inputs) != len(outputs):
+		raise ValueError('inputs and outputs should be of same length')
+
+	results = _test_python_input(filename, inputs)
+	output = []
+	for index, each in enumerate(results):
+		output.append(outputs[index] == each)
+	return output, results, outputs
 
 def do_it(filename, one):
 	p = Popen(['python', filename], stdout=PIPE, stdin=PIPE, stderr=STDOUT)    
 	grep_stdout = p.communicate(input=one)[0]
-	print(grep_stdout.decode())
+	# print(grep_stdout.decode())
+	return grep_stdout.decode()
 
 def _test_python_input(filename, inputs):
+	results = []
 	for each_input in inputs:
-		do_it(filename, each_input)
+		results.append(do_it(filename, each_input))
+	return results
 
 def _test_python_normal(filename):
-	return call(['python', filename])
+	p = Popen(['python', filename], stdout=PIPE, stdin=PIPE, stderr=STDOUT)    
+	grep_stdout = p.communicate()[0]
+	print(grep_stdout.decode())
 
 def _run_python_tests(arguments):
 	fp = open(arguments['FILE_NAME'], 'r')
@@ -52,17 +64,48 @@ def _run_python_tests(arguments):
 			return _test_python_input(arguments['FILE_NAME'], inputs)
 	else:
 		print 'No test cases were provided so running as is'
-		return  _test_python_normal(arguments['FILE_NAME'])
+		print
+		print 'YOUR OUTPUT'
+		print '==========='
+		_test_python_normal(arguments['FILE_NAME'])
 
 def _run_tests(arguments):
 	return _run_python_tests(arguments)
+
+def status(boolean):
+	if boolean:
+		return 'PASS'
+	return 'FAIL'
+
+def pretty_print(to_print):
+	if to_print is None:
+		return ''
+	if len(to_print) is 3:
+		bool_res, results, expected = to_print
+		print "YOUR OUTPUT"
+		print '==========='
+		for each in results:
+			print each
+		print "EXPECTED OUTPUT"
+		print '==============='
+		for each in expected:
+			print each
+		print "PASS/FAIL (of %d testcases)"%len(results)
+		print '========='
+		for index, each in enumerate(bool_res):
+			print 'TESTCASE %d'%(index+1), status(each) 
+	if len(to_print) is 1:
+		print "YOUR OUTPUT"
+		print '==========='
+		print to_print[0]
 
 def main():
 	arguments = docopt(__doc__)
 	if len(arguments) is not 1:
 		raise ValueError('Expected 1 argument, %d given'%len(arguments))
-	print 'Running tests on ', arguments['FILE_NAME']
-	_run_tests(arguments)
+	print 'Alex is working on ', arguments['FILE_NAME']
+	print
+	pretty_print(_run_tests(arguments))
 
 if __name__ == '__main__':
 	main()

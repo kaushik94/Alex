@@ -2,7 +2,7 @@
 ![alt tag](http://thesmashable.com/wp-content/uploads/2012/06/Madagascar-3-movie-2012-Alex-The-Lion-HD-Wallpaper-31.jpg)
 A Command Line Interface to execute test cases embedded within a python code.
 # Installation
-`python setup.py install`
+`$ python setup.py install`
 # Usage
 The file should contain test cases in the format:
 
@@ -25,7 +25,7 @@ input-output should have same order.
 
 And then execute
 
-`alex <file-name>`
+`$ alex <file-name>`
 # Example
 The following is an example file for demonstration:
 The below file is `test.py` which is a python solution to [this problem on Hackerrank](https://www.hackerrank.com/challenges/solve-me-second).
@@ -54,5 +54,20 @@ for i in range(0,n):
 ```
 Now execute
 ```
-alex test.py
+$ alex test.py
+Alex is working on  tests/test_input3.py
+
+YOUR OUTPUT
+===========
+5
+10
+
+EXPECTED OUTPUT
+===============
+5
+10
+
+PASS/FAIL (of 1 testcases)
+=========
+TESTCASE 1 PASS
 ```
