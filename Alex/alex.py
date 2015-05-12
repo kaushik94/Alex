@@ -94,8 +94,7 @@ def pretty_print(to_print):
 		return ''
 	if len(to_print) is 3:
 		bool_res, results, expected = to_print
-        print
-		print "YOUR OUTPUT"
+		print '\n', "YOUR OUTPUT"
 		print '==========='
 		for each in results:
 			print each
@@ -108,8 +107,7 @@ def pretty_print(to_print):
 		for index, each in enumerate(bool_res):
 			print 'TESTCASE %d'%(index+1), status(each) 
 	if len(to_print) is 1:
-        print
-		print "YOUR OUTPUT"
+		print '\n', "YOUR OUTPUT"
 		print '==========='
 		print to_print[0]
 
