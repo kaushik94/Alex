@@ -11,6 +11,17 @@ Arguments:
 from docopt import docopt
 from subprocess import Popen, PIPE, STDOUT, call
 import re
+import time
+
+time_log = []
+
+def timer(test_code):
+    def timed(*args, **kwargs):
+        start_time = time.time()
+        result = test_code(*args, **kwargs)
+        time_log.append(round(time.time() - start_time, 3))
+        return result
+    return timed
 
 def _collect_input(content):
 	m = re.findall('"""I\n(.*?)"""', content, re.DOTALL)
@@ -34,6 +45,7 @@ def _test_python_input_output(filename, inputs, outputs):
 		output.append(outputs[index] == each)
 	return output, results, outputs
 
+@timer
 def do_it(filename, one):
 	p = Popen(['python', filename], stdout=PIPE, stdin=PIPE, stderr=STDOUT)    
 	grep_stdout = p.communicate(input=one)[0]
@@ -46,6 +58,7 @@ def _test_python_input(filename, inputs):
 		results.append(do_it(filename, each_input))
 	return results
 
+@timer
 def _test_python_normal(filename):
 	p = Popen(['python', filename], stdout=PIPE, stdin=PIPE, stderr=STDOUT)    
 	grep_stdout = p.communicate()[0]
@@ -77,7 +90,7 @@ def status(boolean):
 		return 'PASS'
 	return 'FAIL'
 
-def pretty_print(to_print):
+def pretty_print(to_print, times):
 	if to_print is None:
 		return ''
 	if len(to_print) is 3:
@@ -93,7 +106,7 @@ def pretty_print(to_print):
 		print "PASS/FAIL (of %d testcases)"%len(results)
 		print '========='
 		for index, each in enumerate(bool_res):
-			print 'TESTCASE %d'%(index+1), status(each) 
+			print 'TESTCASE %d'%(index+1), status(each), times[index], 'seconds'
 	if len(to_print) is 1:
 		print "YOUR OUTPUT"
 		print '==========='
@@ -105,7 +118,7 @@ def main():
 		raise ValueError('Expected 1 argument, %d given'%len(arguments))
 	print 'Alex is working on ', arguments['FILE_NAME']
 	print
-	pretty_print(_run_tests(arguments))
+	pretty_print(_run_tests(arguments), time_log)
 
 if __name__ == '__main__':
 	main()
