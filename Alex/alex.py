@@ -13,12 +13,13 @@ from subprocess import Popen, PIPE, STDOUT, call
 import re
 import time
 
+time_log = []
+
 def timer(test_code):
     def timed(*args, **kwargs):
         start_time = time.time()
         result = test_code(*args, **kwargs)
-        elapsed_time = round(time.time() - start_time, 3)
-        print elapsed_time, 'seconds'
+        time_log.append(round(time.time() - start_time, 3))
         return result
     return timed
 
@@ -89,12 +90,12 @@ def status(boolean):
 		return 'PASS'
 	return 'FAIL'
 
-def pretty_print(to_print):
+def pretty_print(to_print, times):
 	if to_print is None:
 		return ''
 	if len(to_print) is 3:
 		bool_res, results, expected = to_print
-		print '\n', "YOUR OUTPUT"
+		print "YOUR OUTPUT"
 		print '==========='
 		for each in results:
 			print each
@@ -105,9 +106,9 @@ def pretty_print(to_print):
 		print "PASS/FAIL (of %d testcases)"%len(results)
 		print '========='
 		for index, each in enumerate(bool_res):
-			print 'TESTCASE %d'%(index+1), status(each) 
+			print 'TESTCASE %d'%(index+1), status(each), times[index], 'seconds'
 	if len(to_print) is 1:
-		print '\n', "YOUR OUTPUT"
+		print "YOUR OUTPUT"
 		print '==========='
 		print to_print[0]
 
@@ -115,9 +116,9 @@ def main():
 	arguments = docopt(__doc__)
 	if len(arguments) is not 1:
 		raise ValueError('Expected 1 argument, %d given'%len(arguments))
-	print 'Alex is working on ', arguments['FILE_NAME'], ', run times:'
-	# print
-	pretty_print(_run_tests(arguments))
+	print 'Alex is working on ', arguments['FILE_NAME']
+	print
+	pretty_print(_run_tests(arguments), time_log)
 
 if __name__ == '__main__':
 	main()
