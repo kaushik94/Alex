@@ -6,15 +6,16 @@ version = '1.0.0'
 setup(
     name='alex',
     version=version,
-    description='alex executes your python scripts with test cases embedded',
+    description='Alex executes your python scripts with test cases embedded',
     long_description=open('README.rst').read(),
-    author='Kaushik Varanasi',
+    author='Kaushik Varanasi, ',
+    author_email ='kaushik.varanasi1@gmail.com, '
     license='MIT',
-    keywords=['gitignore', 'git', 'github', 'command line', 'cli'],
+    keywords=['Python' ,'Competetive Programming' ,'Test cases' ,'command line', 'cli'],
     url='http://github.com/kaushik94/alex',
     packages=find_packages(),
     package_data={
-        'joe': ['*.gitignore']
+        'alex': ['*.gitignore']
     },
     install_requires=[
         'docopt>=0.6.1',
