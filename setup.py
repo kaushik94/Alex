@@ -8,8 +8,8 @@ setup(
     version=version,
     description='Alex executes your python scripts with test cases embedded',
     long_description=open('README.rst').read(),
-    author='Kaushik Varanasi, ',
-    author_email ='kaushik.varanasi1@gmail.com, '
+    author='Kaushik Varanasi',
+    author_email ='kaushik.varanasi1@gmail.com',
     license='MIT',
     keywords=['Python' ,'Competetive Programming' ,'Test cases' ,'command line', 'cli'],
     url='http://github.com/kaushik94/alex',
