@@ -60,7 +60,7 @@ def _test_python_input(filename, inputs):
 
 @timer
 def _test_python_normal(filename):
-	p = Popen(['python', filename], stdout=PIPE, stdin=PIPE, stderr=STDOUT)    
+	p = Popen(['python', filename], stdout=PIPE, stdin=PIPE, stderr=STDOUT)
 	grep_stdout = p.communicate()[0]
 	print(grep_stdout.decode())
 
