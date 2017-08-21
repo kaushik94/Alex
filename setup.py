@@ -19,6 +19,7 @@ setup(
     },
     install_requires=[
         'docopt>=0.6.1',
+        'future'
     ],
     entry_points={
         'console_scripts': [
