@@ -47,8 +47,8 @@ def _test_python_input_output(filename, inputs, outputs):
 
 @timer
 def do_it(filename, one):
-	p = Popen(['python', filename], stdout=PIPE, stdin=PIPE, stderr=STDOUT)    
-	grep_stdout = p.communicate(input=one)[0]
+	p = Popen(['python', filename], stdout=PIPE, stdin=PIPE, stderr=STDOUT)
+	grep_stdout = p.communicate(input=one.encode())[0]
 	# print(grep_stdout.decode())
 	return grep_stdout.decode()
 
