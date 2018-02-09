@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 version = '1.0.0'
 
 setup(
-    name='alex',
+    name='alex-py',
     version=version,
     description='Alex executes your python scripts with test cases embedded',
     long_description=open('README.rst').read(),

@@ -5,6 +5,9 @@ Its as simple as 123, just embed the code in the given format and do
 `$ alex <filename>.py`
 
 # Installation
+## Using pip:
+`$ pip install alex-py`
+## From source:
 `$ python setup.py install`
 
 # Requirements

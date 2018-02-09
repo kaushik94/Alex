@@ -13,4 +13,6 @@ var/
 *.egg-info/
 .installed.cfg
 *.egg
+.pypirc
+setup.cfg
 
