@@ -1,13 +1,16 @@
+from builtins import input
+
+
 def solveMeSecond(a,b):
    return a+b
 
-n = int(raw_input())
+n = int(input())
 
 for i in range(0,n):
-    a, b = raw_input().split()
+    a, b = input().split()
     a,b = int(a),int(b)
     res = solveMeSecond(a,b)
-    print res
+    print(res)
 
 """I
 2

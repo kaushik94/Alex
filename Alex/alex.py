@@ -7,7 +7,7 @@ Arguments:
   FILE        input file
 
 """
-
+from __future__ import print_function
 from docopt import docopt
 from subprocess import Popen, PIPE, STDOUT, call
 import re
@@ -47,8 +47,8 @@ def _test_python_input_output(filename, inputs, outputs):
 
 @timer
 def do_it(filename, one):
-	p = Popen(['python', filename], stdout=PIPE, stdin=PIPE, stderr=STDOUT)    
-	grep_stdout = p.communicate(input=one)[0]
+	p = Popen(['python', filename], stdout=PIPE, stdin=PIPE, stderr=STDOUT)
+	grep_stdout = p.communicate(input=one.encode())[0]
 	# print(grep_stdout.decode())
 	return grep_stdout.decode()
 
@@ -60,7 +60,7 @@ def _test_python_input(filename, inputs):
 
 @timer
 def _test_python_normal(filename):
-	p = Popen(['python', filename], stdout=PIPE, stdin=PIPE, stderr=STDOUT)    
+	p = Popen(['python', filename], stdout=PIPE, stdin=PIPE, stderr=STDOUT)
 	grep_stdout = p.communicate()[0]
 	print(grep_stdout.decode())
 
@@ -76,10 +76,10 @@ def _run_python_tests(arguments):
 		if inputs:
 			return _test_python_input(arguments['FILE_NAME'], inputs)
 	else:
-		print 'No test cases were provided so running as is'
-		print
-		print 'YOUR OUTPUT'
-		print '==========='
+		print('No test cases were provided so running as is')
+		print()
+		print('YOUR OUTPUT')
+		print('===========')
 		_test_python_normal(arguments['FILE_NAME'])
 
 def _run_tests(arguments):
@@ -95,29 +95,29 @@ def pretty_print(to_print, times):
 		return ''
 	if len(to_print) is 3:
 		bool_res, results, expected = to_print
-		print "YOUR OUTPUT"
-		print '==========='
+		print("YOUR OUTPUT")
+		print('===========')
 		for each in results:
-			print each
-		print "EXPECTED OUTPUT"
-		print '==============='
+			print(each)
+		print("EXPECTED OUTPUT")
+		print('===============')
 		for each in expected:
-			print each
-		print "PASS/FAIL (of %d testcases)"%len(results)
-		print '========='
+			print(each)
+		print("PASS/FAIL (of %d testcases)"%len(results))
+		print('=========')
 		for index, each in enumerate(bool_res):
-			print 'TESTCASE %d'%(index+1), status(each), times[index], 'seconds'
+			print('TESTCASE %d'%(index+1), status(each), times[index], 'seconds')
 	if len(to_print) is 1:
-		print "YOUR OUTPUT"
-		print '==========='
-		print to_print[0]
+		print("YOUR OUTPUT")
+		print('===========')
+		print(to_print[0])
 
 def main():
 	arguments = docopt(__doc__)
 	if len(arguments) is not 1:
 		raise ValueError('Expected 1 argument, %d given'%len(arguments))
-	print 'Alex is working on ', arguments['FILE_NAME']
-	print
+	print('Alex is working on ', arguments['FILE_NAME'])
+	print()
 	pretty_print(_run_tests(arguments), time_log)
 
 if __name__ == '__main__':
